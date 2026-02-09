@@ -28,7 +28,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">                    
                     <span class="sr-only"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Admin</a>
+                <a class="navbar-brand" href="index.php"> Admin </a>
             </div>
 
             <div class="navbar navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -40,7 +40,9 @@
                     <li><a href="barang.php"><i class="glyphicon glyphicon-shopping-cart"></i> Data Barang</a></li>
 
                     <li><a href="penjualan.php"><i class="glyphicon glyphicon-usd"></i> Penjualan</a></li>
-
+                    
+                    <li><a href="laporan.php"><i class="glyphicon glyphicon-list-alt"></i> Laporan</a></li>
+                    
                     <li><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
                 </ul>
             </div>

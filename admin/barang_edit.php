@@ -25,7 +25,7 @@ include 'header.php';
                     
                     <div class="form-group">
                         <label>Nama Barang</label>
-                        <input type="text" name="nama_barang" class="form-control" placeholder="Masukkan Nama .." value="<?php echo $d['nama_barang']; ?>">
+                        <input type="text" name="nama_barang" class="form-control" placeholder="Masukkan Nama Barang.." value="<?php echo $d['nama_barang']; ?>">
                     </div>
 
                     <div class="form-group">
@@ -44,8 +44,8 @@ include 'header.php';
                     </div>
                     
                     <br><br><br>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="barang.php" class="btn btn-default">Kembali</a>
+                    <button type="submit" class="btn btn-success">Update</button>
+                    <a href="barang.php" class="btn btn-primary">Kembali</a>
                 
                 </form>
                 

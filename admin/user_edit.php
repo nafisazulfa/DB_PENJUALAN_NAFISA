@@ -7,7 +7,7 @@ include 'header.php';
     <div class ="col-md-5 col-md-offset-3">
         <div class="panel">
             <div class="panel-heading">
-                <h4>EDIT Data User </h4>
+                <h4><b>EDIT Data User</b></h4>
             </div>
 
             <div class="panel-body">

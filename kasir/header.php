@@ -33,30 +33,14 @@
             
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="index.php"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="penjualan.php"><i class="glyphicon glyphicon-random"></i> Penjualan</a>
-                    </li>
-                    <li>
-                        <a href="laporan.php"><i class="glyphicon glyphicon-list-alt"></i> Laporan</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-wrench"></i> Pengaturan <span class="caret"></span></a>
-                        
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="harga.php"><i class="glyphicon glyphicon-usd"></i> Pengaturan Harga</a>
-                            </li>
-                            <li>
-                                <a href="ganti_password.php"><i class="glyphicon glyphicon-lock"></i> Ganti Password</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="logout.php" onclick="return confirm('Apakah Yakin Ingin Logout?')"><i class="glyphicon glyphicon-log-out"></i> Log Out</a>
-                    </li>
+                    <li class="active"><a href="index.php"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    
+                    <li><a href="penjualan.php"><i class="glyphicon glyphicon-random"></i> Penjualan</a></li>
+                    
+                    <li><a href="barang.php"><i class="glyphicon glyphicon-shopping-cart"></i> Barang</a></li>
+
+
+                    <li><a href="logout.php" onclick="return confirm('Apakah Yakin Ingin Logout?')"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">

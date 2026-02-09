@@ -7,7 +7,7 @@ include 'header.php';
     <div class="col-md-5 col-md-offset-3">
         <div class="panel">
             <div class="panel-heading">
-                <h4><b>Tambah Data Barang</b></h4>
+                <h4><b>Tambah Barang</b></h4>
             </div>
 
             <div class="panel-body">
@@ -34,8 +34,8 @@ include 'header.php';
                         </div>
 
                         <br><br><br>
-                        <input type="submit" class="btn btn-primary" value="Simpan">
-                        <a href="barang.php" class="btn btn-default">Kembali</a>
+                        <input type="submit" class="btn btn-success" value="Simpan">
+                        <a href="barang.php" class="btn btn-primary">Kembali</a>
                         
                     </form>
                 </div>

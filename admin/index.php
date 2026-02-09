@@ -21,6 +21,7 @@ if ($_SESSION['user_status'] != 1) {
         </h4>
     </div>
 
+    <!-- DASHBOARD -->
     <div class="panel">
         <div class="panel-heading">
             <h4>Dashboard</h4>
@@ -37,7 +38,7 @@ if ($_SESSION['user_status'] != 1) {
                                 <i class="glyphicon glyphicon-tag"></i>
                                 <span class="pull-right">
                                     <?php
-                                    $barang = mysqli_query($koneksi, "SELECT * FROM barang");
+                                    $barang = mysqli_query($koneksi,"SELECT id_barang FROM barang");
                                     echo mysqli_num_rows($barang);
                                     ?>
                                 </span>
@@ -55,7 +56,7 @@ if ($_SESSION['user_status'] != 1) {
                                 <i class="glyphicon glyphicon-shopping-cart"></i>
                                 <span class="pull-right">
                                     <?php
-                                    $penjualan = mysqli_query($koneksi, "SELECT * FROM penjualan");
+                                    $penjualan = mysqli_query($koneksi,"SELECT id_jual FROM penjualan");
                                     echo mysqli_num_rows($penjualan);
                                     ?>
                                 </span>
@@ -65,7 +66,7 @@ if ($_SESSION['user_status'] != 1) {
                     </div>
                 </div>
 
-                <!-- JUMLAH ADMIN -->
+                <!-- JUMLAH USER -->
                 <div class="col-md-3">
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -73,10 +74,7 @@ if ($_SESSION['user_status'] != 1) {
                                 <i class="glyphicon glyphicon-user"></i>
                                 <span class="pull-right">
                                     <?php
-                                    $admin = mysqli_query(
-                                        $koneksi,
-                                        "SELECT * FROM user WHERE user_status = 1"
-                                    );
+                                    $admin = mysqli_query($koneksi,"SELECT user_id FROM user WHERE user_status = 1");
                                     echo mysqli_num_rows($admin);
                                     ?>
                                 </span>
@@ -92,13 +90,9 @@ if ($_SESSION['user_status'] != 1) {
                         <div class="panel-heading">
                             <h1>
                                 <i class="glyphicon glyphicon-list-alt"></i>
-
                                 <span class="pull-right">
                                     <?php
-                                    $kasir = mysqli_query(
-                                        $koneksi,
-                                        "SELECT * FROM user WHERE user_status = 2"
-                                    );
+                                    $kasir = mysqli_query($koneksi,"SELECT user_id FROM user WHERE user_status = 2");
                                     echo mysqli_num_rows($kasir);
                                     ?>
                                 </span>
@@ -108,22 +102,22 @@ if ($_SESSION['user_status'] != 1) {
                     </div>
                 </div>
 
-		        <!-- TOTAL OMZET -->
-		        <div class="col-md-3">
-		            <div class="panel panel-danger">
-		                <div class="panel-heading">
-		                    <h4>
-		                       <i class="glyphicon glyphicon-usd"></i>
-		                       <?php
-		                        $total = mysqli_query($koneksi,"SELECT SUM(total_harga) AS total FROM penjualan");
-		                        $t = mysqli_fetch_assoc($total);
-		                        echo "Rp " . number_format($t['total']);
-		                       ?>
-		                    </h4>
-		                    Total Penjualan
-		                </div>
-		            </div>
-		        </div>
+                <!-- TOTAL OMZET -->
+                <div class="col-md-3">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h4>
+                                <i class="glyphicon glyphicon-usd"></i>
+                                <?php
+                                $total = mysqli_query($koneksi,"SELECT SUM(total_harga) AS total FROM penjualan");
+                                $t = mysqli_fetch_assoc($total);
+                                echo "Rp " . number_format($t['total'] ?? 0);
+                                ?>
+                            </h4>
+                            Total Penjualan
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -138,37 +132,55 @@ if ($_SESSION['user_status'] != 1) {
         <div class="panel-body">
             <table class="table table-bordered table-striped">
                 <tr>
-                    <th>No</th>
-                    <th>Invoice</th>
-                    <th>Pelanggan</th>
-                    <th>Tanggal Pembelian</th>
-                    <th>Total Harga</th>
-                    <th>Opsi</th>
+                    <th class ="text-center">No</th>
+                    <th class ="text-center">Invoice</th>
+                    <th class ="text-center"> Nama Kasir</th>
+                    <th class ="text-center">Tanggal</th>
+                    <th class ="text-center" width="30%">Barang</th>
+					<th class ="text-center">Harga</th>
+                    <th class ="text-center">Total Harga</th>
+                    <th class ="text-center" width="17%">Opsi</th>
                 </tr>
 
                 <?php
-                $no = 1;
-                $data = mysqli_query(
-                    $koneksi,
-                    "SELECT * FROM penjualan JOIN user ON penjualan.user_id = user.user_id JOIN barang ON penjualan.id_barang = barang.id_barang ORDER BY id_jual DESC");
-                     while ($d = mysqli_fetch_array($data)) {
-                ?>
-                
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $d['id_jual']; ?></td>
-                    <td><?= $d['username']; ?></td>
-                    <td><?= $d['tgl_beli']; ?></td>
-                    <td><?= "Rp. " . number_format($d['total_harga']); ?></td>
-                    <td>
-                        <a href="invoice.php?id=<?= $d['id_jual']; ?>" class="btn btn-sm btn-warning">Invoice</a>
-                        <a href="penjualan_edit.php?id=<?= $d['id_jual']; ?>" class="btn btn-sm btn-info">Edit</a>
-                        <a href="penjualan_hapus.php?id=<?= $d['id_jual']; ?>" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
-                <?php
-                }
-                ?>
+				$no = 1;
+				$data = mysqli_query($koneksi,"SELECT p.id_jual, p.tgl_jual, p.total_harga, u.username 
+				FROM penjualan p
+    			JOIN user u ON p.user_id = u.user_id ORDER BY p.id_jual DESC");
+				
+				while($d = mysqli_fetch_assoc($data)){
+					$id_jual = $d['id_jual'];
+					$detail = mysqli_query($koneksi,"SELECT b.nama_barang, d.jumlah, d.harga
+					FROM penjualan_detail d
+					JOIN barang b ON d.id_barang = b.id_barang WHERE d.id_jual = '$id_jual'");
+					$barang_list = '';
+    				$harga_list  = '';
+					
+					while($b = mysqli_fetch_assoc($detail)){
+						$barang_list .= $b['nama_barang'].' ('.$b['jumlah'].'x)<br>';
+						$harga_list  .= 'Rp '.number_format($b['harga']).'<br>';
+					}
+				?>
+				
+				<tr>
+					<td><?= $no++; ?></td>
+					<td class ="text-center">INV-<?= $d['id_jual']; ?></td>
+					<td class ="text-center"><?= $d['username']; ?></td>
+					<td class ="text-center"><?= $d['tgl_jual']; ?></td>
+					<td ><?= $barang_list; ?></td>
+					<td ><?= $harga_list; ?></td>
+					<td class ="text-left"><?= "Rp " . number_format($d['total_harga']); ?></td>
+					<td>
+						<a href="penjualan_invoice.php?id=<?= $d['id_jual']; ?>" class="btn btn-sm btn-warning">Invoice</a>
+						<a href="penjualan_edit.php?id=<?= $d['id_jual']; ?>" class="btn btn-sm btn-success">Edit</a>
+						<a href="penjualan_hapus.php?id=<?= $d['id_jual']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data?')">Hapus</a>
+					</td>
+				</tr>
+				
+				<?php
+				}
+				?>
+
             </table>
         </div>
     </div>

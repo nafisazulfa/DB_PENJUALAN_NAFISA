@@ -5,11 +5,11 @@ include 'header.php';
 <div class="container">
     <div class="panel">
         <div class="panel-heading">
-            <h4>Data User</h4>
+            <h4><b>Data User</b></h4>
         </div>
         
         <div class="panel-body">
-            <a href="user_tambah.php" class="btn btn-sm btn-info pull-right">Tambah</a>
+            <a href="user_tambah.php" class="btn btn-sm btn-primary pull-right">Tambah</a>
             <br><br><br>
             <table class="table table-bordered table-striped">
                 <tr>
@@ -43,7 +43,7 @@ include 'header.php';
                         ?>
                     </td>
                     <td>
-                        <a href="user_edit.php?id=<?php echo $d['user_id']; ?>" class="btn btn-sm btn-info">Edit</a>
+                        <a href="user_edit.php?id=<?php echo $d['user_id']; ?>" class="btn btn-sm btn-success">Edit</a>
                         <a href="user_hapus.php?id=<?php echo $d['user_id']; ?>" class="btn btn-sm btn-danger">Hapus</a>
                     </td>
                 </tr>

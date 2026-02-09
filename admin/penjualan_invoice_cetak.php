@@ -1,74 +1,84 @@
 <?php
 include 'header.php';
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Struk Penjualan</title>
-    <link rel="stylesheet" href="../asset/css/bootstrap.css">
-</head>
-<body>
-
-<div class="col-md-10 col-md-offset-1">
-
-<?php
 include '../koneksi.php';
+
 $id = $_GET['id'];
-$penjualan = mysqli_query($koneksi,"SELECT penjualan.*, user.username FROM penjualan JOIN user ON penjualan.user_id = user.user_id WHERE penjualan.id_jual='$id'");
-while ($t = mysqli_fetch_array($penjualan)) {
+$penjualan = mysqli_query($koneksi,"SELECT penjualan.*, user.username 
+    FROM penjualan 
+    JOIN user ON penjualan.user_id = user.user_id WHERE penjualan.id_jual='$id'");
 ?>
 
-<center><h2>STRUK PENJUALAN</h2></center>
+<div class="container">
+    <?php while ($t = mysqli_fetch_array($penjualan)) { ?>
 
-<br><br>
+    <center>
+        <h4><b>STRUK PENJUALAN</b></h4>
+    </center>
+    <hr>
 
-<table class="table">
-<tr><th>ID Penjualan</th><th>:</th><th><?= $t['id_jual'] ?></th></tr>
-<tr><th>Tanggal</th><th>:</th><th><?= $t['tgl_jual'] ?></th></tr>
-<tr><th>Kasir</th><th>:</th><th><?= $t['username'] ?></th></tr>
-</table>
+    <table width="100%">
+        <tr>
+            <td width="30%">ID Penjualan</td>
+            <td width="5%">:</td>
+            <td><?= $t['id_jual'] ?></td>
+        </tr>
+        <tr>
+            <td>Tanggal</td>
+            <td>:</td>
+            <td><?= $t['tgl_jual'] ?></td>
+        </tr>
+        <tr>
+            <td>Kasir</td>
+            <td>:</td>
+            <td><?= $t['username'] ?></td>
+        </tr>
+    </table>
 
-<table class="table table-bordered">
-<tr>
-    <th>No</th><th>Nama Barang</th><th>Harga</th>
-    <th>Jumlah</th><th>Subtotal</th>
-</tr>
+    <hr>
 
-<?php
-$no = 1;
-$detail = mysqli_query($koneksi,"
-    SELECT penjualan_detail.*, barang.nama_barang
-    FROM penjualan_detail
-    JOIN barang ON penjualan_detail.id_barang = barang.id_barang
-    WHERE penjualan_detail.id_jual='$id'
-");
+    <table class="table table-bordered">
+        <tr>
+            <th class="text-center">No</th>
+            <th class="text-center">Nama Barang</th>
+            <th class="text-center">Harga</th>
+            <th class="text-center">Jumlah</th>
+            <th class="text-center">Subtotal</th>
+        </tr>
 
-while ($d = mysqli_fetch_array($detail)) {
-?>
-<tr>
-    <td><?= $no++ ?></td>
-    <td><?= $d['nama_barang'] ?></td>
-    <td>Rp. <?= number_format($d['harga']) ?></td>
-    <td><?= $d['jumlah'] ?></td>
-    <td>Rp. <?= number_format($d['subtotal']) ?></td>
-</tr>
-<?php } ?>
+        <?php
+        $no = 1;
+        $detail = mysqli_query($koneksi,"SELECT penjualan_detail.*, barang.nama_barang 
+            FROM penjualan_detail
+            JOIN barang ON penjualan_detail.id_barang = barang.id_barang WHERE penjualan_detail.id_jual='$id'");
+            while ($d = mysqli_fetch_array($detail)) {
+        ?>
 
-<tr>
-    <th colspan="4" class="text-right">TOTAL</th>
-    <th>Rp. <?= number_format($t['total_harga']) ?></th>
-</tr>
-</table>
+        <tr>
+            <td class="text-center"><?= $no++ ?></td>
+            <td><?= $d['nama_barang'] ?></td>
+            <td>Rp. <?= number_format($d['harga']) ?></td>
+            <td class="text-center"><?= $d['jumlah'] ?></td>
+            <td>Rp. <?= number_format($d['subtotal']) ?></td>
+        </tr>
 
-<p class="text-center"><i>"Terima Kasih Atas Kepercayaan Anda"</i></p>
+        <?php
+        }
+        ?>
 
-<?php } ?>
+        <tr>
+            <th colspan="4" class="text-center">TOTAL</th>
+            <th>Rp. <?= number_format($t['total_harga']) ?></th>
+        </tr>
 
+    </table>
+
+    <center>
+        <i>Terima kasih telah Berbelanja di Apotek Nimacare</i>
+    </center>
+    
+    <?php
+    }
+    ?>
+    
 </div>
-<script type="text/javascript">
-    window.print();
-</script>
-</body>
-</html>
+<script>window.print();</script>

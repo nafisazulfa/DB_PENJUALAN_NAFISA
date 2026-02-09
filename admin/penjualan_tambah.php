@@ -5,12 +5,14 @@ include '../koneksi.php';
 <div class="container">
     <div class="panel">
         <div class="panel-heading">
-            <h4>Tambah Penjualan</h4>
+            <br>
+            <h4><b>Tambah Penjualan</b></h4>
         </div>
+
         <div class="panel-body">
             <div class="col-md-10 col-md-offset-1">
-                <a href="penjualan.php" class="btn btn-sm btn-info pull-right">Kembali</a>
-                <br><br>
+                <a href="penjualan.php" class="btn btn-sm btn-primary pull-right">Kembali</a>
+                <br><br><br>
 
                 <form method="POST" action="penjualan_aksi.php">
 
@@ -18,11 +20,9 @@ include '../koneksi.php';
                         <label>Tanggal Transaksi</label>
                         <input type="date" name="tgl_jual" class="form-control" required>
                     </div>
-
                     <hr>
 
                     <h4>Data Barang</h4>
-
                     <table class="table table-bordered">
                         <tr>
                             <th>Barang</th>
@@ -42,15 +42,14 @@ include '../koneksi.php';
                                 <input type="number" name="jumlah[]" class="form-control" min="0" value="0">
                             </td>
                         </tr>
+
                         <?php 
                         } 
                         ?>
+
                     </table>
-
-                    <input type="submit" class="btn btn-primary" value="Simpan Transaksi">
-
+                    <input type="submit" class="btn btn-success" value="Simpan">
                 </form>
-
             </div>
         </div>
     </div>

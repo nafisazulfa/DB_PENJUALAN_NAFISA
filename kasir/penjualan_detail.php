@@ -2,8 +2,9 @@
 include 'header.php';
 include '../koneksi.php';
 
-$id = $_GET['id']; // id_jual
+$id = $_GET['id'];
 ?>
+
 <div class="container">
     <div class="panel">
         <div class="panel-heading">
@@ -11,8 +12,8 @@ $id = $_GET['id']; // id_jual
         </div>
 
         <div class="panel-body">
-            <a href="penjualan.php" class="btn btn-sm btn-danger">Kembali</a>
-            <br><br>
+            <a href="penjualan.php" class="btn btn-sm btn-primary">Kembali</a>
+            <br><br><br>
 
             <table class="table table-bordered table-striped">
                 <tr>
@@ -28,6 +29,7 @@ $id = $_GET['id']; // id_jual
                 $no = 1;
                 while($d = mysqli_fetch_array($data)){
                 ?>
+
                 <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $d['nama_barang']; ?></td>
@@ -35,7 +37,11 @@ $id = $_GET['id']; // id_jual
                     <td><?php echo $d['jumlah']; ?></td>
                     <td><?php echo $d['subtotal']; ?></td>
                 </tr>
-                <?php } ?>
+
+                <?php
+                }
+                ?>
+
             </table>
         </div>
     </div>

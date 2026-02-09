@@ -1,17 +1,18 @@
 <?php
 session_start();
-
 Include 'koneksi.php';
+
 $username=$_POST['username'];
 $password=md5($_POST['password']);
 
-$data=mysqli_query($koneksi, "select * from user where username='$username' and password='$password'");
+$data=mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username' AND password='$password'");
 $cek=mysqli_num_rows($data);
 
 if($cek > 0){
     $d = mysqli_fetch_assoc($data);
 
-    $_SESSION['username'] = $d['username'];
+    $_SESSION['user_id']     = $d['user_id'];
+    $_SESSION['username']    = $d['username'];
     $_SESSION['user_status'] = $d['user_status'];
 
     if($d['user_status'] == 1){
