@@ -43,9 +43,11 @@ include 'header.php';
                     <br>
                     <input type="submit" class="btn btn-primary" value="Simpan"></input>
                 </form>
+
                 <?php
                 }
                 ?>
+                
             </div>
         </div>
     </div>

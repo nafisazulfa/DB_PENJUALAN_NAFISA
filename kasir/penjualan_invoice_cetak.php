@@ -47,7 +47,7 @@ $penjualan = mysqli_query($koneksi,"SELECT penjualan.*, user.username
 
         <?php
         $no = 1;
-        $detail = mysqli_query($koneksi,"SELECT penjualan_detail.*, barang.nama_barang 
+        $detail = mysqli_query($koneksi," SELECT penjualan_detail.*, barang.nama_barang 
             FROM penjualan_detail
             JOIN barang ON penjualan_detail.id_barang = barang.id_barang WHERE penjualan_detail.id_jual='$id'");
             while ($d = mysqli_fetch_array($detail)) {
@@ -81,4 +81,4 @@ $penjualan = mysqli_query($koneksi,"SELECT penjualan.*, user.username
     ?>
     
 </div>
-<script>window.print();</script>
+<script> window.print();</script>
